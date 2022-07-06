@@ -1,0 +1,71 @@
+using System;
+using System.Collections.Generic;
+namespace CsharpDestructor
+{
+
+    class Test
+    {
+
+       static void Sort(List<int> unSortedList)    
+        {
+            
+            List<int> SortedList = new List<int>();
+            List<int> unique_SortedList = new List<int>();
+            List<int> unique_Reversed_SortedList = new List<int>();
+            int count = unSortedList.Count;
+            int findSmallest()
+            {
+                int smallest = unSortedList[0];
+                for (int i = 0; i <= unSortedList.Count - 1; i++)
+                {
+                    if (unSortedList[i] < smallest)
+                    {
+                        smallest = unSortedList[i];
+                    }
+                }
+                return smallest;
+            }
+
+            while (SortedList.Count <= count - 1)
+            {
+                SortedList.Add(findSmallest());  
+                foreach(int i in SortedList)
+                {
+                    if (unSortedList.Contains(i))
+                    {
+                        unSortedList.Remove(i);
+                    }
+                }
+            }
+
+            foreach (int i in SortedList)
+            {
+                if (!unique_SortedList.Contains(i))
+                {
+                    unique_SortedList.Add(i);
+                }
+            }
+            Console.WriteLine("unique list");
+            foreach(int i in unique_SortedList) { Console.WriteLine(i); }
+            for(int i=unique_SortedList.Count-1; i>=0;i--)
+            {
+                unique_Reversed_SortedList.Add(unique_SortedList[i]);
+                
+            }
+            Console.WriteLine("unique rversed list");
+            foreach(int i in unique_Reversed_SortedList) { Console.WriteLine(i); }
+
+        }
+
+        public static void Main()
+        {
+            List<int> unSortedList = new List<int>() { 30, 50,20, 10, 40,30,10 ,20 };
+            //List<int> unSortedList = new List<int>() { 10, 20, 30, 40, 50 };
+
+            Sort(unSortedList);
+        }
+    
+            
+    }
+
+}
