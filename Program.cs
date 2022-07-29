@@ -1,101 +1,80 @@
 using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-namespace test1
+namespace MyNameSpace
 {
-    class Class_Program
-
+    class A
     {
 
-        string brand;
-        int price;
-        Class_Program(string theBrand, int thePrice)
+
+    }
+    class B : A
+    {
+     
+        static public B StaticMethodOfB()
         {
-            brand = theBrand;
-            price = thePrice;
-        }
-        Class_Program(Class_Program S)
-        {
-            brand = S.brand;
-            price = S.price;
-        }
-        static void Main(string[] args)
-        {
-
-            Class_Program p = new Class_Program("bm", 100);
-            Console.WriteLine(p);//test1.Class_Program
-            Console.WriteLine(p.brand);//bm
-            Console.WriteLine(p.price);//100
-
-            // equal p2 by p using copy constructor 
-            Class_Program p2 = new Class_Program(p);
-            Console.WriteLine(p2.brand);//bm
-            Console.WriteLine(p2.price);//100
-
-            Class_Program p3 = p;
-            Console.WriteLine(p3.brand);//bm
-            Console.WriteLine(p3.price);//100
-
-
-            p.brand = "mercids";
-            Console.WriteLine(p.brand);//mercids
-            Console.WriteLine(p.price);//100
-
-            Console.WriteLine(p2.brand);//bm
-            Console.WriteLine(p2.price);//100
-
-
-            Console.WriteLine(p3.brand);//mercids
-            Console.WriteLine(p3.price);//100
-
+            B bb = new B();
+            return bb;
         }
     }
-
-    struct Struct_Program
-
+    class Program
     {
-
-        string brand;
-        int price;
-        Struct_Program(string theBrand, int thePrice)
+        static void Main()
         {
-            brand = theBrand;
-            price = thePrice;
-        }
-        Struct_Program(Struct_Program S)
-        {
-            brand = S.brand;
-            price = S.price;
-        }
-        static void Main(string[] args)
-        {
+            Console.WriteLine(typeof(Int32));                        //System.Int32
+            Console.WriteLine(10.GetType());                         //System.Int32
+            Console.WriteLine(  (  typeof(Int32)  ).GetType());      //System.RuntimeType
+            Console.WriteLine(  (  10.GetType()   ).GetType());      //System.RuntimeType
 
 
-            Struct_Program p = new Struct_Program("bm",100);
-            Console.WriteLine(p);//test1.Struct_Program
-            Console.WriteLine(p.brand);//bm
-            Console.WriteLine(p.price);//100
+            Console.WriteLine();
 
-            // equal p2 by p using copy constructor 
-            Struct_Program p2 = new Struct_Program(p);
-            Console.WriteLine(p2.brand);//bm
-            Console.WriteLine(p2.price);//100
+            B b = new B();
+            Console.WriteLine(typeof(B));       //MyNameSpace.B
+            Console.WriteLine(b);               //MyNameSpace.B
+            Console.WriteLine(b.GetType());     //MyNameSpace.B
 
-            Struct_Program p3 = p;
-            Console.WriteLine(p3.brand);//bm
-            Console.WriteLine(p3.price);//100
+            Console.WriteLine(  (  typeof(B)      ).GetType());     //System.RuntimeType
+            Console.WriteLine(  (  b.GetType()    ).GetType());      //System.RuntimeType
 
 
-            p.brand = "mercids";
-            Console.WriteLine(p.brand);//mercids
-            Console.WriteLine(p.price);//100
 
-            Console.WriteLine(p2.brand);//bm
-            Console.WriteLine(p2.price);//100
+            Console.WriteLine();
 
 
-            Console.WriteLine(p3.brand);//bm
-            Console.WriteLine(p3.price);//100
+
+            A a1 = new A();
+            Console.WriteLine(typeof(A));       //MyNameSpace.A
+            Console.WriteLine(a1);              //MyNameSpace.A
+            Console.WriteLine(a1.GetType());    //MyNameSpace.A
+            Console.WriteLine(  (  typeof(A)      ).GetType());     //System.RuntimeType
+            Console.WriteLine(  (  a1.GetType()   ).GetType());      //System.RuntimeType
+
+
+            Console.WriteLine();
+
+            //انشاء اوبجكتس من البيز بالرفرنس لاوبجكتس الموروث
+            //create object from base that reference to object of inheritor  
+
+
+            //inheritor object created by the constructor
+            A a2 = new B();
+            Console.WriteLine(typeof(A));       //MyNameSpace.A
+            Console.WriteLine(a2);              //MyNameSpace.B
+            Console.WriteLine(a2.GetType());    //MyNameSpace.B
+            Console.WriteLine(  (  typeof(A)     ).GetType());     //System.RuntimeType
+            Console.WriteLine(  (  a2.GetType()  ).GetType());      //System.RuntimeType
+            Console.WriteLine();
+            
+            //inheritor object created by the returned value of method
+            A a3 = B.StaticMethodOfB();
+            Console.WriteLine(typeof(A));       //MyNameSpace.A
+            Console.WriteLine(a3);              //MyNameSpace.B
+            Console.WriteLine(a3.GetType());    //MyNameSpace.B
+            Console.WriteLine(  (  typeof(A)     ).GetType());     //System.RuntimeType
+            Console.WriteLine(  (  a3.GetType()  ).GetType());      //System.RuntimeType
+
+
+
+
 
         }
     }
